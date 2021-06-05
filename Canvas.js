@@ -1,7 +1,7 @@
 const https = require('https');
 const parseLink = require('parse-link-header');
 const fs = require('fs');
-const settings = JSON.parse(fs.readFileSync('settings.json'));
+const settings = JSON.parse(fs.readFileSync('./settings.json'));
 
 const urlPromise = (urlOptions, data) => {
     return new Promise((resolve, reject) => {
