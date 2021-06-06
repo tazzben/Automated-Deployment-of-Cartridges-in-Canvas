@@ -26,7 +26,7 @@ const getSpreadsheet = async () => {
         spreadsheetId: settings.spreadsheet,
         range: settings.range,
     });
-    if (sheetData && sheetData.data && sheetData.data.values) {
+    if (sheetData?.data?.values) {
         return sheetData.data.values;
     }
     return [
@@ -38,9 +38,11 @@ const courseList = async () => {
     const data = await getSpreadsheet();
     let r = [];
     for (let row of data) {
+        let d = new Date(row[2]?.trim() ?? "");
         r.push({
-            class: row[0].trim(),
-            url: row[1].trim()
+            class: row[0]?.trim() ?? "",
+            url: row[1]?.trim() ?? "",
+            date: (d instanceof Date && !isNaN(d)) ? d : new Date(0)
         });
     }
     return r;
