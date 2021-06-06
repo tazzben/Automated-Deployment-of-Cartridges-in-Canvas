@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "google-auth-library": "^7.1.1",
     "googleapis": "^75.0.0",
-    "parse-link-header": "^1.0.1"
+    "parse-link-header": "^1.0.1",
+    "querystring": "^0.2.1"
   }
 }
