@@ -39,8 +39,8 @@ const courseList = async () => {
     let r = [];
     for (let row of data) {
         r.push({
-            class: row[0],
-            url: row[1]
+            class: row[0].trim(),
+            url: row[1].trim()
         });
     }
     return r;

@@ -14,8 +14,7 @@ const loopCourses = async () => {
     let r = [];
     for (let course of courses) {
         if (course.sis_course_id && course.enrollment_term_id == maxTerm) {
-            let shortClass = course.sis_course_id.trim().substring(0, 8);
-            let filteredList = courseList.filter(obj => obj.class == shortClass);
+            let filteredList = courseList.filter(obj => obj.class == course.sis_course_id.trim().substring(0, obj.class.length) && obj.class.length > 0);
             for (let c of filteredList) {
                 r.push("Deploying to " + course.sis_course_id)
                 await Canvas.deployContent(course.id, c.url);
