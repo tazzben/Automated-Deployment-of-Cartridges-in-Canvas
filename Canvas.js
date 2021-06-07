@@ -30,13 +30,13 @@ const urlPromise = (urlOptions, data) => {
 };
 
 const listCourses = async (header, data = []) => {
-    let result = await urlPromise(header, '');
-    let d = JSON.parse(result.body);
+    const result = await urlPromise(header, '');
+    const d = JSON.parse(result.body);
     data = data.concat(d);
     if (result.headers && result.headers.link) {
-        let links = parseLink(result.headers.link);
+        const links = parseLink(result.headers.link);
         if (links.next) {
-            let url = new URL(links.next.url);
+            const url = new URL(links.next.url);
             header.path = url.pathname.toString() + url.search.toString();
             header.host = url.host.toString();
             return listCourses(header, data);
@@ -46,10 +46,11 @@ const listCourses = async (header, data = []) => {
 };
 
 const getCourses = async () => {
-    let headers = {
+    const state = (settings.state == "available") ? "state[]=available&state[]=unpublished" : "state[]=unpublished";
+    const headers = {
         host: settings.canvasURL,
         port: 443,
-        path: '/api/v1/courses?state[]=unpublished&per_page=100',
+        path: '/api/v1/courses?' + state + '&per_page=100',
         method: 'GET',
         headers: {
             authorization: 'Bearer ' + settings.token
@@ -59,11 +60,11 @@ const getCourses = async () => {
 };
 
 const deployContent = async (id, url) => {
-    let content = querystring.stringify({
+    const content = querystring.stringify({
         "migration_type": "common_cartridge_importer",
         "settings[file_url]": url
     });
-    let header = {
+    const header = {
         host: settings.canvasURL,
         port: 443,
         path: '/api/v1/courses/' + id.toString() + '/content_migrations',

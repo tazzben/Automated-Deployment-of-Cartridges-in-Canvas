@@ -34,19 +34,19 @@ const getSpreadsheet = async () => {
     ];
 };
 
-const updateSpreadsheet = async (rows) => {
+const updateSpreadsheet = async (rows, timestamp) => {
     const auth = authenticate();
     const sheets = google.sheets({
         version: 'v4',
         auth
     });
-    const vals = Array.from({length: rows}, () => [ , , new Date(Date.now()).toString()]);
+    const dateValues = Array.from({length: rows}, () => [ , , timestamp]);
     return await sheets.spreadsheets.values.update({
         spreadsheetId: settings.spreadsheet,
         range: settings.range,
         valueInputOption: "USER_ENTERED",
         resource: {
-            values: vals
+            values: dateValues
         }
     });
 };
@@ -55,8 +55,8 @@ const updateSpreadsheet = async (rows) => {
 const courseList = async () => {
     const data = await getSpreadsheet();
     let r = [];
-    for (let row of data) {
-        let d = new Date(row[2]?.toString().trim() ?? "");
+    for (const row of data) {
+        const d = new Date(row[2]?.toString().trim() ?? "");
         r.push({
             class: row[0]?.toString().trim() ?? "",
             url: row[1]?.toString().trim() ?? "",
