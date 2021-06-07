@@ -1,5 +1,7 @@
 const Canvas = require('./Canvas.js');
 const GAPIs = require('./Google.js');
+const fs = require('fs');
+const settings = JSON.parse(fs.readFileSync('./settings.json'));
 
 const loopCourses = async () => {
     const courseList = await GAPIs.courseList();
@@ -14,11 +16,11 @@ const loopCourses = async () => {
     const maxTerm = courses.reduce(findMax).enrollment_term_id;
     let r = [];
     for (const course of courses) {
-        if (course.sis_course_id && course.enrollment_term_id == maxTerm) {
+        if (course.course_code && (course.enrollment_term_id == maxTerm || settings.disableMaxTerm)) {
             const d = new Date(course?.created_at);
-            const filteredList = courseList.filter(obj => obj.class == course.sis_course_id.trim().substring(0, obj.class.length) && (d >= obj.date || !(d instanceof Date && !isNaN(d))) && obj.class.length > 0 && obj.url.length > 0);
+            const filteredList = courseList.filter(obj => obj.class == course.course_code.trim().substring(0, obj.class.length) && (d >= obj.date || !(d instanceof Date && !isNaN(d))) && obj.class.length > 0 && obj.url.length > 0);
             for (const c of filteredList) {
-                r.push("Deploying to " + course.sis_course_id)
+                r.push("Deploying to " + course.name + " (" + course.course_code + ")");
                 await Canvas.deployContent(course.id, c.url);
             }
         }
