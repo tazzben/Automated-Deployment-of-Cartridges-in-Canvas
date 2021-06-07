@@ -38,7 +38,7 @@ const listCourses = async (header, data = []) => {
     });
     const d = JSON.parse(result.body);
     data = data.concat(d);
-    if (result.headers && result.headers.link) {
+    if (result.headers?.link) {
         const links = parseLink(result.headers.link);
         if (links.next) {
             const url = new URL(links.next.url);
@@ -69,7 +69,7 @@ const deployContent = async (id, url) => {
         "migration_type": "common_cartridge_importer",
         "settings[file_url]": url
     });
-    const header = {
+    const headers = {
         host: settings.canvasURL,
         port: 443,
         path: '/api/v1/courses/' + id.toString() + '/content_migrations',
@@ -80,7 +80,7 @@ const deployContent = async (id, url) => {
             'Content-Length': content.length
         }
     };
-    return await urlPromise(header, content).catch(() => {
+    return await urlPromise(headers, content).catch(() => {
         console.log("There was a problem deploying content to Canvas");
         return;
     });
