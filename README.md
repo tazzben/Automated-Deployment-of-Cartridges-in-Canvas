@@ -31,7 +31,7 @@ The script is driven by a service account file (privatekey.json) -- you can obta
 
 The script uses a Google Spreadsheet with three columns.  The first column lists a portion of the course code, the second lists the asset to deploy, and third list the date and time the asset was last deployed. For instance, the content of the spreadsheet might look something like this:
 
-| |
+| | | |
 | ------------- | ------------- | ------------- |
 | ECON     | https://storage.googleapis.com/bucket/ECONBranding.zip | Mon Jun 07 2021 09:24:03 GMT-0500 (Central Daylight Time) |
 | ECON2200 | https://storage.googleapis.com/bucket/Pretest.zip |  |
