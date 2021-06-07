@@ -30,7 +30,7 @@ const loopCourses = async () => {
 };
 
 const consoleLoop = async () => {
-    let r = await loopCourses();
+    const r = await loopCourses();
     console.table(r);
 }
 
@@ -38,7 +38,7 @@ if (!(!!process.env.GCP_PROJECT || !!process.env.FUNCTION_SIGNATURE_TYPE)) {
     consoleLoop();
 }
 
-exports.pubSubTrigger = (message, _) => {
+exports.pubSubTrigger = (message, ) => {
     const d = message.data ? Buffer.from(message.data, 'base64').toString() : '';
     console.log('PubSub Message: ' + d);
     consoleLoop();
