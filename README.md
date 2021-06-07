@@ -29,7 +29,7 @@ The script is driven by a service account file (privatekey.json) -- you can obta
 
 ## Google Spreadsheet
 
-The script uses a Google Spreadsheet with three columns.  The first column lists a portion of the course code, the second lists the asset to deploy, and third list the date and time the asset was last deployed. For instance, the content of the spreadsheet might look something like this:
+The script uses a Google Spreadsheet with three columns.  The first column lists a portion of the course code, the second lists the asset to deploy, and third list the date and time the asset was last deployed. For instance, the content of the spreadsheet might look something like this (there is no header row on the spreadsheet):
 
 | | | |
 | ------------- | ------------- | ------------- |
