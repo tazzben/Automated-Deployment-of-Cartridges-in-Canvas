@@ -40,7 +40,7 @@ if (!(!!process.env.GCP_PROJECT || !!process.env.FUNCTION_SIGNATURE_TYPE)) {
     consoleLoop();
 }
 
-exports.pubSubTrigger = (message, ) => {
+exports.helloPubSub = (message, ) => {
     const d = message.data ? Buffer.from(message.data, 'base64').toString() : '';
     console.log('PubSub Message: ' + d);
     consoleLoop();
