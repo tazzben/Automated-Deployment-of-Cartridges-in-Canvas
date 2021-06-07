@@ -25,6 +25,11 @@ const getSpreadsheet = async () => {
     const sheetData = await sheets.spreadsheets.values.get({
         spreadsheetId: settings.spreadsheet,
         range: settings.range,
+    }).catch(() => {
+        console.log("There was a problem retrieving the spreadsheet data from Google Sheets");
+        return [
+            []
+        ];
     });
     if (sheetData?.data?.values) {
         return sheetData.data.values;
@@ -48,6 +53,9 @@ const updateSpreadsheet = async (rows, timestamp) => {
         resource: {
             values: dateValues
         }
+    }).catch(() => {
+        console.log("There was an error writing to the Google Spreadsheet");
+        return;
     });
 };
 

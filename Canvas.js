@@ -30,7 +30,12 @@ const urlPromise = (urlOptions, data) => {
 };
 
 const listCourses = async (header, data = []) => {
-    const result = await urlPromise(header, '');
+    const result = await urlPromise(header, '').catch(() => {
+        console.log("There was a problem retrieving the courses from Canvas");
+        return {
+            "body": "{}"
+        }
+    });
     const d = JSON.parse(result.body);
     data = data.concat(d);
     if (result.headers && result.headers.link) {
@@ -75,7 +80,10 @@ const deployContent = async (id, url) => {
             'Content-Length': content.length
         }
     };
-    return await urlPromise(header, content);
+    return await urlPromise(header, content).catch(() => {
+        console.log("There was a problem deploying content to Canvas");
+        return;
+    });
 };
 
 module.exports = {
