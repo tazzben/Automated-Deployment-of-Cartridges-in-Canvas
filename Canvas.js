@@ -1,6 +1,5 @@
 const https = require('https');
 const parseLink = require('parse-link-header');
-const querystring = require('querystring');
 const fs = require('fs');
 const settings = JSON.parse(fs.readFileSync('./settings.json'));
 
@@ -65,10 +64,10 @@ const getCourses = async () => {
 };
 
 const deployContent = async (id, url) => {
-    const content = querystring.stringify({
+    const content = new URLSearchParams({
         "migration_type": "common_cartridge_importer",
         "settings[file_url]": url
-    });
+    }).toString();
     const headers = {
         host: settings.canvasURL,
         port: 443,
