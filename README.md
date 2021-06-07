@@ -31,12 +31,11 @@ The script is driven by a service account file (privatekey.json) -- you can obta
 
 The script uses a Google Spreadsheet with three columns.  The first column lists a portion of the course code, the second lists the asset to deploy, and third list the date and time the asset was last deployed. For instance, the content of the spreadsheet might look something like this:
 
+| <td colspan=3>Note: The table has no header</td> |
+| ------------- | ------------- | ------------- |
 | ECON     | https://storage.googleapis.com/bucket/ECONBranding.zip | Mon Jun 07 2021 09:24:03 GMT-0500 (Central Daylight Time) |
-| ------------- | ------------- | ------------- |
 | ECON2200 | https://storage.googleapis.com/bucket/Pretest.zip |  |
-| ------------- | ------------- | ------------- |    
 | ECON8990801 | https://storage.googleapis.com/bucket/SectionSpecific.zip | Tue Jun 01 2021 09:24:03 GMT-0500 (Central Daylight Time) |
-| ------------- | ------------- | ------------- |
 | ECON2 | https://storage.googleapis.com/bucket/Pretest.zip | Tue Jun 01 2021 09:24:03 GMT-0500 (Central Daylight Time) |
 
 The first column describes the classes to match.  This can be as specific or as general as the user wishes.  Given the first row lists just "ECON" it would deploy the asset in the second column to all economics courses.  Similarly, the second row would deploy to all ECON2200 courses and the third row would deploy to a specific section of 8990.  There is no issue with multiple assets being deployed to the same course.
