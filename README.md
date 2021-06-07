@@ -26,3 +26,9 @@ In the settings file, the range parameter sets the sheet and range of the list o
 ## privatekey.json
 
 The script is driven by a service account file (privatekey.json) -- you can obtain a service account JSON file by following the instructions [here](https://cloud.google.com/iam/docs/creating-managing-service-account-keys).  You need to add this service account as an editor to the Google Spreadsheet you plan to store your list of courses.   Additionally, in the Google Cloud project that you created the service account file, you need to enable Google Sheets API.  You can do this by searching for "API," selecting "APIs & Services" and clicking "Enable APIs and Services."  From this page you can search for "Google Sheets" and enable the API.
+
+## Google Spreadsheet
+
+The script uses a Google Spreadsheet with three columns.  The first column lists a portion of the course code, the second lists the asset to deploy, and third list the date and time the asset was last deployed. For instance, the content of the spreadsheet might look something like this:
+
+| ECON | https://storage.googleapis.com/bucket/ECONBranding.zip | 
