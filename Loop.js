@@ -1,6 +1,6 @@
 const Canvas = require('./Canvas.js');
-const GAPIs = require('./Google.js');
-const importCSV = require('./importcsv.js');
+const gAPIs = require('./Google.js');
+const importCSV = require('./importCSV.js');
 const fs = require('fs');
 const settings = JSON.parse(fs.readFileSync('./settings.json'));
 
@@ -10,7 +10,7 @@ const loopCourses = async (filename = "") => {
     if (filename.length > 0){
         ({courseList, saveable} = await importCSV.importCSV(filename));
     } else {
-        courseList = await GAPIs.courseList();
+        courseList = await gAPIs.courseList();
     }
     const timestamp = new Date(Date.now()).toString();
     const courses = await Canvas.getCourses();
@@ -33,7 +33,7 @@ const loopCourses = async (filename = "") => {
         }
     }
     if (courseList.length > 0 && filename.length == 0) {
-        await GAPIs.updateSpreadsheet(courseList.length, timestamp);
+        await gAPIs.updateSpreadsheet(courseList.length, timestamp);
     } else if (saveable.length > 0 && courseList.length) {
         await importCSV.exportCSV(filename, saveable);
     }
