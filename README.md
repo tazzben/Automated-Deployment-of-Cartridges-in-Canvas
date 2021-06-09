@@ -10,16 +10,16 @@ The script requires two files: settings.json and privatekey.json.  The settings.
 
 ```
 {
-    "token": "<Canvas Token>",
+    "token": "[Canvas Token]",
     "canvasURL": "unomaha.instructure.com",
-    "spreadsheet": "<Spreadsheet ID>",
+    "spreadsheet": "[Spreadsheet ID]",
     "range": "ClassList!A:C",
     "disableMaxTerm": false,
     "state": "unpublished"
 }
 ```
 
-Where <Canvas Token> is the Developer Token for the Canvas account you wish to use and <Spreadsheet ID> is the Google Spreadsheet ID.  You can generate a Canvas token by going to the Account->Settings within Canvas.  Under the "Approved Integrations" section of the page click the "+ New Access Token" button.   The Google Spreadsheet can be found by looking at the URL of the spreadsheet when open. Google Spreadsheet URLs follow the following pattern: ".../d/<Spreadsheet ID>/edit..."  The <Spreadsheet ID> will be a long alphanumeric string.  
+Where [Canvas Token] is the Developer Token for the Canvas account you wish to use and [Spreadsheet ID] is the Google Spreadsheet ID.  You can generate a Canvas token by going to the Account->Settings within Canvas.  Under the "Approved Integrations" section of the page click the "+ New Access Token" button.   The Google Spreadsheet can be found by looking at the URL of the spreadsheet when open. Google Spreadsheet URLs follow the following pattern: ".../d/[Spreadsheet ID]/edit..."  The [Spreadsheet ID] will be a long alphanumeric string.  
 
 In the settings file, the range parameter sets the sheet and range of the list of courses; this range should be three columns wide.  By default only the courses with the maximum term will be considered for deployment (this is to prevent accidental deployment to courses that are over, but have not been concluded in Canvas).  Setting "disableMaxTerm" to true will not filter the list of courses based on the maximum term.  Finally, "state" allows the user to specify if content should be deployed to unpublished Canvas courses (the default) or available and unpublished courses.    If "state" is set to "available" the script will deploy to both available and unpublished courses.  Otherwise it will deploy content only to unpublished courses.
 
