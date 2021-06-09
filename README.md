@@ -56,7 +56,11 @@ The script can be executed directly on any computer with Node.js 14 or above.  T
 node main.js
 ```
 
-This approach is appropriate when the user is performing a one-off deployment of a set of assets.
+This will read the the specified Google Spreadsheet and perform a one-off deployment of a set of assets.  Alternatively, the user can specify a CSV as an alternative to the Google Spreadsheet:
+
+```
+node main.js --filename=~/desktop/listofassets.csv
+```
 
 ### Google Cloud Function and Timers
 
