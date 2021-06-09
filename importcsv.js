@@ -14,16 +14,16 @@ const importCSV = async (filename) => {
             output: "csv"
         }).fromFile(absFile);
     })()
-    .catch((e) => {
+    .catch(() => {
         console.log("There is something wrong with the specified file.");
     });
     let r = [];
     let s = [];
     for (const row of jsonArray) {
-        const d = new Date(row[2] ?.toString().trim() ?? "");
+        const d = new Date(row[2]?.toString().trim() ?? "");
         r.push({
-            class: row[0] ?.toString().trim() ?? "",
-            url: row[1] ?.toString().trim() ?? "",
+            class: row[0]?.toString().trim() ?? "",
+            url: row[1]?.toString().trim() ?? "",
             date: (d instanceof Date && !isNaN(d)) ? d : new Date(0)
         });
         s.push([row[0] ?? "", row[1] ?? "", timestamp]);
