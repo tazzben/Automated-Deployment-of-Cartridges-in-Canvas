@@ -4,11 +4,10 @@ const {
 const {
     JWT
 } = require('google-auth-library');
-const fs = require('fs');
-const settings = JSON.parse(fs.readFileSync('./settings.json'));
+const settings = require('./loadSettings.js').loadSettings();
 
 const authenticate = () => {
-    const privatekey = require("./privatekey.json");
+    const privatekey = require('./loadSettings.js').loadPrivateKey();
     return new JWT({
         email: privatekey.client_email,
         key: privatekey.private_key,

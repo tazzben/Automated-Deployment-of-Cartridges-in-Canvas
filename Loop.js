@@ -1,8 +1,7 @@
 const Canvas = require('./Canvas.js');
 const gAPIs = require('./Google.js');
 const importCSV = require('./importCSV.js');
-const fs = require('fs');
-const settings = JSON.parse(fs.readFileSync('./settings.json'));
+const settings = require('./loadSettings.js').loadSettings();
 
 const loopCourses = async (filename = "") => {
     let courseList;
