@@ -13,6 +13,10 @@ const loopCourses = async (filename = "") => {
     }
     const timestamp = new Date(Date.now()).toString();
     const courses = await Canvas.getCourses();
+    if (courses.length === 0){
+        return false;
+    }
+    console.log(courses);
     const findMax = (max, b) => {
         if (max.enrollment_term_id < b.enrollment_term_id) {
             return b;
