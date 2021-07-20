@@ -49,11 +49,15 @@ const listCourses = async (header, data = []) => {
 };
 
 const getCourses = async () => {
-    const state = (settings.state == "available") ? "state[]=available&state[]=unpublished" : "state[]=unpublished";
+    let state = (settings.state == "available") ? "state[]=available&state[]=unpublished" : "state[]=unpublished";
+    if (settings.admin) {
+       state =  (settings.state == "available") ? "state[]=available&completed=false&blueprint=false" : "published=false&completed=false&blueprint=false";
+    }
+    const path = (settings.endpoint && settings.endpoint?.length > 0) ? settings.endpoint + "?recursive=1&" : '/api/v1/courses?';
     const headers = {
         host: settings.canvasURL,
         port: 443,
-        path: '/api/v1/courses?' + state + '&per_page=100',
+        path: path  + '&per_page=50',
         method: 'GET',
         headers: {
             authorization: 'Bearer ' + settings.token

@@ -16,9 +16,8 @@ const loopCourses = async (filename = "") => {
     if (courses.length === 0){
         return false;
     }
-    console.log(courses);
     const findMax = (max, b) => {
-        if (max.enrollment_term_id < b.enrollment_term_id) {
+        if (max.enrollment_term_id < b.enrollment_term_id && b.sis_course_id?.length > 0) {
             return b;
         }
         return max;
