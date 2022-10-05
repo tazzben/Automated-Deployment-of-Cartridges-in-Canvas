@@ -6,9 +6,9 @@
     "google-auth-library": "^8.5.2",
     "googleapis": "^108.0.0",
     "parse-link-header": "^2.0.0",
-    "yargs": "^17.5.1"
+    "yargs": "^17.6.0"
   },
   "devDependencies": {
-    "eslint": "^8.23.1"
+    "eslint": "^8.24.0"
   }
 }
