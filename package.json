@@ -3,12 +3,12 @@
     "csv-writer": "^1.6.0",
     "csvtojson": "^2.0.10",
     "expand-tilde": "^2.0.2",
-    "google-auth-library": "^9.11.0",
+    "google-auth-library": "^9.13.0",
     "googleapis": "^140.0.1",
     "parse-link-header": "^2.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "eslint": "^9.6.0"
+    "eslint": "^9.9.0"
   }
 }
